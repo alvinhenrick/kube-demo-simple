@@ -1,0 +1,27 @@
+---
+apiVersion: "kubeflow.org/v1alpha2"
+kind: TFJob
+metadata:
+  name: kube-demo-simple
+spec:
+  tfReplicaSpecs:
+    Master:
+      replicas: 1
+      template:
+        spec:
+          containers:
+          - name: tensorflow
+            image: alvinhenrick/kube-demo-simple
+            command: ["python","/code/train_and_eval.py","--input_train_path=/data/iris/iris_training.csv","--input_test_path=/data/iris/iris_test.csv","--output_path=/model/iris_model"]
+            volumeMounts:
+            - name: data
+              mountPath: "/data"
+            - name: models
+              mountPath: "/model"
+          volumes:
+          - name: data
+            persistentVolumeClaim:
+              claimName: mydata
+          - name: models
+            persistentVolumeClaim:
+              claimName: mymodels

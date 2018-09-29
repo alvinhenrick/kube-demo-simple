@@ -59,9 +59,9 @@
 
 ## Serve Simple model
 
-1. Download the model from Persistent Volume Storage to local folder `make downlaod`
+1. Download the model from Persistent Volume Storage to local folder `make download`
 
-2. Wrap the model to docker image for serving via Seldon using s2i `make s2i`
+2. Wrap the model to docker image for serving via Seldon using [openshift s2i](https://github.com/openshift/source-to-image) `make s2i`
 
 3. Push the serving image to docker hub repository `s2i push`
 
@@ -79,3 +79,7 @@
 
 ### Port Forward
 `kubectl port-forward $(kubectl get pods -n default -l service=ambassador -o jsonpath='{.items[0].metadata.name}') -n default 8080:80`
+
+## References
+
+[Seldon s2i Wrapper](https://github.com/SeldonIO/seldon-core/blob/master/docs/wrappers/python.md)

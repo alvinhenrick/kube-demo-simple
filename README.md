@@ -47,7 +47,7 @@
 11. Deploy Seldon core component to Kubernetes cluster `ks apply default`
 
 
-## Train Simple model
+## Train Simple
 
 1. Build docker training image `make build`
 
@@ -59,7 +59,7 @@
 
 5. Train the model with Kubeflow `make train` reference [TfJob](tfjobsimple.yaml)
 
-## Serve Simple model
+## Serve Model
 
 1. Download the model from Persistent Volume Storage to local folder `make download`
 

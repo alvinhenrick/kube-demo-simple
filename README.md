@@ -33,7 +33,9 @@
 6. Generate Kubeflow core component `ks generate kubeflow-core kubeflow-core`
 
 7. Set Kubeflow core parameters 
+   
    i. `ks param set kubeflow-core reportUsage false`
+   
    ii.`ks param set kubeflow-core usageId $(uuidgen)`
 
 8. Deploy Kubeflow core component to Kubernetes cluster `ks apply default`

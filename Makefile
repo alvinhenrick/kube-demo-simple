@@ -31,8 +31,8 @@ s2ipush:
 	docker push alvinhenrick/iris-classification:0.1
 
 serve:
-	ks generate seldon-serve-simple iris-classification --image=alvinhenrick/iris-classification:0.1
-	ks apply default -c iris-classification
+	cd simple_demo_ks ; ks generate seldon-serve-simple iris-classification --image=alvinhenrick/iris-classification:0.1
+	cd simple_demo_ks ; ks apply default -c iris-classification
 
 portforward:
 	kubectl port-forward `kubectl get pods -n default -l service=ambassador -o jsonpath='{.items[0].metadata.name}'` -n default 8080:80
@@ -42,7 +42,7 @@ predict:
 
 clean:
 	kubectl delete -f tfjobsimple.yaml
-	ks delete default -c iris-classification
-	ks component rm iris-classification
+	cd simple_demo_ks ; ks delete default -c iris-classification
+	cd simple_demo_ks ; ks component rm iris-classification
 
 

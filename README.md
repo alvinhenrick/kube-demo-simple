@@ -57,6 +57,8 @@
 
 4. Create a Persistent Volume Claim to store data and trained model `make createpvc`
 
+5. Copy training data to PVC `make copydata`
+
 5. Train the model with Kubeflow `make train` reference [TfJob](tfjobsimple.yaml)
 
 ## Serve Model
@@ -78,6 +80,8 @@
 
 ### Tail Log
 `kubectl logs -f $(kubectl get pods -l seldon-app=iris-classification -o=jsonpath='{.items[0].metadata.name}') iris-classification`
+
+`kubectl logs -f kube-demo-simple-master-0`
 
 ### Port Forward
 `kubectl port-forward $(kubectl get pods -n default -l service=ambassador -o jsonpath='{.items[0].metadata.name}') -n default 8080:80`

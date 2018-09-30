@@ -21,4 +21,4 @@ class IrisClassifier(object):
     def predict(self, input_data, feature_names):
         predict_results = self.estimator.predict(input_fn=lambda: predict_input_fn(input_data))
 
-        return [[x["class"]] for x in predict_results]
+        return [[x["class_ids"]] for x in predict_results]

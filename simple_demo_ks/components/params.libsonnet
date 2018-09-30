@@ -37,5 +37,13 @@
       withApife: "false",
       withRbac: "true",
     },
+    "iris-classification": {
+      endpoint: "REST",
+      image: "alvinhenrick/iris-classification:0.1",
+      name: "iris-classification",
+      namespace: "null",
+      pvcName: "null",
+      replicas: 1,
+    },
   },
 }

@@ -22,3 +22,10 @@ class IrisClassifier(object):
         predict_results = self.estimator.predict(input_fn=lambda: predict_input_fn(input_data))
 
         return [[x["class_ids"]] for x in predict_results]
+
+# if __name__ == '__main__':
+#     t = IrisClassifier()
+#     results = t.predict(np.array([[5.9, 3.0, 4.2, 1.5],
+#                                   [6.9, 3.1, 5.4, 2.1],
+#                                   [5.1, 3.3, 1.7, 0.5]]), None)
+#     print(results)

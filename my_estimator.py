@@ -129,6 +129,8 @@ def my_model_fn(
 def predict_input_fn(prediction_x):
     def decode(x):
         x = tf.split(x, 4)  # Need to split into our 4 features
+        print(x)
+        print("*********")
         return dict(zip(feature_names, x))  # To build a dict of them
 
     dataset = tf.data.Dataset.from_tensor_slices(prediction_x)

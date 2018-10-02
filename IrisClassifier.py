@@ -23,8 +23,11 @@ class IrisClassifier(object):
 
         return [[x["class_ids"]] for x in predict_results]
 
+
 # if __name__ == '__main__':
 #     t = IrisClassifier()
+#     import numpy as np
+#
 #     results = t.predict(np.array([[5.9, 3.0, 4.2, 1.5],
 #                                   [6.9, 3.1, 5.4, 2.1],
 #                                   [5.1, 3.3, 1.7, 0.5]]), None)

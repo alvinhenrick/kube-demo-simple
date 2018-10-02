@@ -11,7 +11,7 @@ spec:
         spec:
           containers:
           - name: tensorflow
-            image: alvinhenrick/kube-demo-simple
+            image: alvinhenrick/kube-demo-simple:1.1
             command: ["python","/code/train_and_eval.py","--input_train_path=/data/iris/iris_training.csv","--input_test_path=/data/iris/iris_test.csv","--output_path=/model/iris_model"]
             volumeMounts:
             - name: data

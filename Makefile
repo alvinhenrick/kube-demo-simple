@@ -1,13 +1,15 @@
-.PHONY: build
+VERSION=1.1
+TRAIN_IMAGE_BASE=alvinhenrick/kube-demo-simple
+SERVE_IMAGE_BASE=alvinhenrick/iris-classification
 
 build:
-	docker build -t alvinhenrick/kube-demo-simple .
+	docker build -t ${TRAIN_IMAGE_BASE}:${VERSION} .
 
 login:
 	docker login
 
 push:
-	docker push alvinhenrick/kube-demo-simple
+	docker push ${TRAIN_IMAGE_BASE}:${VERSION}
 
 createpvc:
 	kubectl apply -f mystorage.yaml
@@ -25,13 +27,13 @@ download:
 	kubectl cp dataaccess:/model/iris_model ./iris_model
 
 s2i:
-	s2i build . seldonio/seldon-core-s2i-python3:0.1 alvinhenrick/iris-classification:0.1 --env MODEL_NAME=IrisClassifier --env API_TYPE=REST --env SERVICE_TYPE=MODEL --env PERSISTENCE=0
+	s2i build . seldonio/seldon-core-s2i-python3:0.1 ${SERVE_IMAGE_BASE}:${VERSION} --env MODEL_NAME=IrisClassifier --env API_TYPE=REST --env SERVICE_TYPE=MODEL --env PERSISTENCE=0
 
 s2ipush:
-	docker push alvinhenrick/iris-classification:0.1
+	docker push ${SERVE_IMAGE_BASE}:${VERSION}
 
 serve:
-	cd simple_demo_ks ; ks generate seldon-serve-simple iris-classification --image=alvinhenrick/iris-classification:0.1
+	cd simple_demo_ks ; ks generate seldon-serve-simple iris-classification --image=${SERVE_IMAGE_BASE}:${VERSION}
 	cd simple_demo_ks ; ks apply default -c iris-classification
 
 portforward:

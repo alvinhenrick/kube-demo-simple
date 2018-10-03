@@ -27,7 +27,7 @@ download:
 	kubectl cp dataaccess:/model/iris_model ./iris_model
 
 s2i:
-	s2i build . seldonio/seldon-core-s2i-python3:0.1 ${SERVE_IMAGE_BASE}:${VERSION} --env MODEL_NAME=IrisClassifier --env API_TYPE=REST --env SERVICE_TYPE=MODEL --env PERSISTENCE=0
+	s2i build . seldonio/seldon-core-s2i-python3:0.1 ${SERVE_IMAGE_BASE}:${VERSION} --copy ./iris_model --env MODEL_NAME=IrisClassifier --env API_TYPE=REST --env SERVICE_TYPE=MODEL --env PERSISTENCE=0
 
 s2ipush:
 	docker push ${SERVE_IMAGE_BASE}:${VERSION}
@@ -40,7 +40,13 @@ portforward:
 	kubectl port-forward `kubectl get pods -n default -l service=ambassador -o jsonpath='{.items[0].metadata.name}'` -n default 8080:80
 
 predict:
-	curl -X POST -H 'Content-Type: application/json' -d '{"data":{"ndarray":[[5.1, 3.3, 1.7, 0.5]]}}' http://localhost:8080/seldon/iris-classification/api/v0.1/predictions
+	curl -X POST -H 'Content-Type: application/json' -d '{"data":{"ndarray":[[5.9, 3.0, 4.2, 1.5],[6.9, 3.1, 5.4, 2.1],[5.1, 3.3, 1.7, 0.5]]}}' http://localhost:8080/seldon/iris-classification/api/v0.1/predictions
+
+tail:
+	kubectl logs -f kube-demo-simple-master-0
+
+tailseldon:
+	kubectl logs -f `kubectl get pods -l seldon-app=iris-classification -o=jsonpath='{.items[0].metadata.name}'` iris-classification
 
 clean:
 	# kubectl delete -f tfjobsimple.yaml

@@ -67,7 +67,7 @@
 
 2. Wrap the model to docker image for serving via Seldon using [openshift s2i](https://github.com/openshift/source-to-image) `make s2i`
 
-3. Push the serving image to docker hub repository `s2i push`
+3. Push the serving image to docker hub repository `make s2ipush`
 
 4. Serve the model with Kubeflow `make serve`
 

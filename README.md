@@ -86,6 +86,9 @@
 ### Port Forward
 `kubectl port-forward $(kubectl get pods -n default -l service=ambassador -o jsonpath='{.items[0].metadata.name}') -n default 8080:80`
 
+### Shell Seldon Container
+`kubectl exec -it $(kubectl get pods -l seldon-app=iris-classification -o=jsonpath='{.items[0].metadata.name}') --container iris-classification -- /bin/bash`
+
 ## References
 
 [Seldon s2i Wrapper](https://github.com/SeldonIO/seldon-core/blob/master/docs/wrappers/python.md)

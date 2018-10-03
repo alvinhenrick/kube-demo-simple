@@ -107,3 +107,4 @@ venv.bak/
 
 .idea
 iris_model
+!/simple_demo_ks/*

@@ -35,11 +35,9 @@ def train_and_evaluate(main_args):
         input_fn=lambda: my_input_fn(main_args.input_train_path, 500, 256),
         max_steps=TRAIN_STEPS)
 
-    # classifier.train(
-    #     input_fn=lambda: my_input_fn(main_args.input_train_path, 500, 256))
     tf.logging.info("...done classifier.train")
 
-    # Evaluate our model using the examples contained in FILE_TEST
+    # Evaluate our model using the examples contained in input_test_path
     # Return value will contain evaluation_metrics such as: loss & average_loss
     tf.logging.info("Before classifier.evaluate")
     eval_spec = tf.estimator.EvalSpec(
@@ -49,8 +47,6 @@ def train_and_evaluate(main_args):
         throttle_secs=EVAL_INTERVAL,  # evaluate every N seconds
     )
 
-    # evaluate_result = classifier.evaluate(
-    #     input_fn=lambda: my_input_fn(main_args.input_test_path, 4))
     evaluate_result = tf.estimator.train_and_evaluate(estimator, train_spec, eval_spec)
 
     tf.logging.info("...done classifier.evaluate")

@@ -92,11 +92,19 @@
 ## References
 
 [Kubernetes](https://kubernetes.io/)
+
 [Kubeflow](https://www.kubeflow.org/)
+
 [Docker](https://www.docker.com/)
+
 [Seldon](https://www.seldon.io/)
+
 [Ksonnet](https://ksonnet.io/)
+
 [Jsonnet](https://jsonnet.org/)
+
 [s2i](https://github.com/openshift/source-to-image)
+
 [Seldon s2i Wrapper](https://github.com/SeldonIO/seldon-core/blob/master/docs/wrappers/python.md)
+
 [Tensorflow](https://www.tensorflow.org/)

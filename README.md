@@ -49,19 +49,25 @@
 
 ## Train Simple
 
+### Optional Steps. You can use my docker hub image.
+
 1. Build docker training image `make build`
 
 2. Login to your personal docker hub account `make login`
 
 3. Push the training image to docker hub repository `make push`
 
-4. Create a Persistent Volume Claim to store data and trained model `make createpvc`
+### Necessary Steps to run the training 
 
-5. Copy training data to PVC `make copydata`
+1. Create a Persistent Volume Claim to store data and trained model `make createpvc`
 
-5. Train the model with Kubeflow `make train` reference [TfJob](tfjobsimple.yaml)
+2. Copy training data to PVC `make copydata`
+
+3. Train the model with Kubeflow `make train` reference [TfJob](tfjobsimple.yaml)
 
 ## Serve Model
+
+### Optional Steps. You can use my docker hub image.
 
 1. Download the model from Persistent Volume Storage to local folder `make download`
 
@@ -69,24 +75,32 @@
 
 3. Push the serving image to docker hub repository `make s2ipush`
 
-4. Serve the model with Kubeflow `make serve`
+### Necessary Steps to serve the model. 
 
-5. Forward the ambassador port to to local host `make portforward`
+1. Serve the model with Kubeflow `make serve`
 
-6. Make predictions from deployed serving image with Kubeflow `make predict`
+2. Forward the ambassador port to to local host `make portforward`
+
+3. Make predictions from deployed serving image with Kubeflow `make predict`
 
 ## Clean up
-1. `make clean`
+
+1. `make stop`
+
+2. `make clean`
 
 ### Tail Log
+
 `kubectl logs -f $(kubectl get pods -l seldon-app=iris-classification -o=jsonpath='{.items[0].metadata.name}') iris-classification`
 
 `kubectl logs -f kube-demo-simple-master-0`
 
 ### Port Forward
+
 `kubectl port-forward $(kubectl get pods -n default -l service=ambassador -o jsonpath='{.items[0].metadata.name}') -n default 8080:80`
 
 ### Shell Seldon Container
+
 `kubectl exec -it $(kubectl get pods -l seldon-app=iris-classification -o=jsonpath='{.items[0].metadata.name}') --container iris-classification -- /bin/bash`
 
 ## References

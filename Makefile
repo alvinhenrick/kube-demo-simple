@@ -48,8 +48,10 @@ tail:
 tailseldon:
 	kubectl logs -f `kubectl get pods -l seldon-app=iris-classification -o=jsonpath='{.items[0].metadata.name}'` iris-classification
 
+stop:
+	kubectl delete -f tfjobsimple.yaml
+
 clean:
-	# kubectl delete -f tfjobsimple.yaml
 	cd simple_demo_ks ; ks delete default -c iris-classification
 	cd simple_demo_ks ; ks component rm iris-classification
 

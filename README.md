@@ -1,6 +1,6 @@
 ## How to install Kubeflow
 
-1. Download and unzip Kubeflow to a directory e.g. `~/sdk/kubeflow-0.2.6`
+1. [Download](https://github.com/kubeflow/kubeflow/releases/tag/v0.2.7) and unzip Kubeflow to a directory e.g. `~/sdk/kubeflow-0.2.6`
 
 2. Set the environment variable `export KUBEFLOW_REPO=~/sdk/kubeflow-0.2.6`
 

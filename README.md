@@ -50,13 +50,17 @@
 ## Train Simple
 
 ### Optional Steps. You can use my docker hub image.
+
 <mark>
+
 1. Build docker training image `make build`
 
 2. Login to your personal docker hub account `make login`
 
 3. Push the training image to docker hub repository `make push`
+
 </mark>
+
 ### <mark>Necessary Steps</mark> to run the training 
 
 1. Create a Persistent Volume Claim to store data and trained model `make createpvc`

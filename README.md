@@ -51,15 +51,11 @@
 
 ### Optional Steps. You can use my docker hub image.
 
-<span style="background-color: #FFFF00">
-
 1. Build docker training image `make build`
 
 2. Login to your personal docker hub account `make login`
 
 3. Push the training image to docker hub repository `make push`
-
-</span>
 
 ### <mark>Necessary Steps</mark> to run the training 
 

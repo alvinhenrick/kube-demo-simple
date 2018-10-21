@@ -57,7 +57,7 @@
 
 3. Push the training image to docker hub repository `make push`
 
-### <mark>Necessary Steps</mark> to run the training 
+### Necessary Steps to run the training 
 
 1. Create a Persistent Volume Claim to store data and trained model `make createpvc`
 
@@ -67,7 +67,7 @@
 
 ## Serve Model
 
-### <mark>Optional Steps</mark>. You can use my docker hub image.
+### Optional Steps. You can use my docker hub image.
 
 1. Download the model from Persistent Volume Storage to local folder `make download`
 
@@ -75,7 +75,7 @@
 
 3. Push the serving image to docker hub repository `make s2ipush`
 
-### <mark>Necessary Steps</mark> to serve the model. 
+### Necessary Steps to serve the model. 
 
 1. Serve the model with Kubeflow `make serve`
 

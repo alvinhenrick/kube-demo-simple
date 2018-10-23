@@ -106,7 +106,9 @@
 ### DataAccess Container
 
 `kubectl exec -it dataaccess -- /bin/bash`
+
 `kubectl exec -it dataaccess -- ls -l /data`
+
 `kubectl exec -it dataaccess -- ls -l /model`
 
 ## References

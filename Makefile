@@ -2,6 +2,24 @@ VERSION=1.1
 TRAIN_IMAGE_BASE=alvinhenrick/kube-demo-simple
 SERVE_IMAGE_BASE=alvinhenrick/iris-classification
 
+KF_NAME=my-kubeflow-simple
+BASE_DIR=/Users/shona/sdk/kubeflow
+KF_DIR=$(BASE_DIR)/$(KF_NAME)
+CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/v1.0-branch/kfdef/kfctl_k8s_istio.v1.0.2.yaml"
+CONFIG_FILE=$(KF_DIR)/kfctl_k8s_istio.v1.0.2.yaml
+
+set_env_var:
+	mkdir -p ${KF_DIR}
+
+install: set_env_var
+	cd ${KF_DIR};kfctl build -V -f ${CONFIG_URI}
+
+apply: set_env_var
+	cd ${KF_DIR};kfctl apply -V -f ${CONFIG_FILE}
+
+delete: set_env_var
+	cd ${KF_DIR};kfctl delete -V -f ${CONFIG_FILE}
+
 build:
 	docker build -t ${TRAIN_IMAGE_BASE}:${VERSION} .
 
